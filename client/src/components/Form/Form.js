@@ -4,7 +4,7 @@ import useStyles from "./styles";
 import { Paper, TextField, Typography, Button } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { createPost, setCurrentId } from "../../store/actions/posts";
-import { updatePost, scrollToForm } from "../../store/actions/posts";
+import { updatePost } from "../../store/actions/posts";
 
 const Form = () => {
   const classes = useStyles();
@@ -101,7 +101,7 @@ const Form = () => {
           label="Tags"
           fullWidth
           value={postData.tags}
-          onChange={(e) => setPostData({ ...postData, tags: e.target.value })}
+          onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })}
         />
         <div className={classes.fileInput}>
           <FileBase

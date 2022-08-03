@@ -5,7 +5,8 @@ import {
   LOADING,
   SET_CURRENT_ID,
   UPDATE_POST,
-  SCROLL_TO_FORM
+  SCROLL_TO_FORM,
+  LIKE_POST
 } from "../actions/actionType";
 const initialState = {
   posts: [],
@@ -26,6 +27,7 @@ export default function (state = initialState, action) {
         posts: [...state.posts, action.payload],
       };
     case UPDATE_POST:
+    case LIKE_POST:
       return {
         ...state,
         posts: state.posts

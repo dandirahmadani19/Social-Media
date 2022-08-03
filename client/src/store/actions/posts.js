@@ -1,5 +1,5 @@
 import * as api from '../../api';
-import { CREATE_POST, DELETE_POST, FETCH_POSTS, LOADING, SCROLL_TO_FORM, SET_CURRENT_ID, UPDATE_POST } from './actionType';
+import { CREATE_POST, DELETE_POST, FETCH_POSTS, LIKE_POST, LOADING, SCROLL_TO_FORM, SET_CURRENT_ID, UPDATE_POST } from './actionType';
 
 export const getPosts = () => async (dispatch) => {
     try {
@@ -30,7 +30,6 @@ export const updatePost = (id, updatedPost) => async (dispatch) => {
     dispatch({ type: LOADING, payload: true })
     try {
         const { data } = await api.updatePost(id, updatedPost);
-        getPosts()
         dispatch({ type: UPDATE_POST, payload: data })
         const res = await api.fetchPosts();
         dispatch({ type: FETCH_POSTS, payload: res.data })
@@ -50,6 +49,15 @@ export const deletePost = (id) => async (dispatch) => {
     } catch (error) {
         console.log(error);
     }
+}
+
+export const likePost = (id) => async (dispatch) => {
+    try {
+        const { data } = await api.likePost(id);
+        dispatch({ type: LIKE_POST, payload: data })
+    } catch (error) {
+        console.log(error);
+    } 
 }
 
 export const setCurrentId = (post) => (dispatch) => {
