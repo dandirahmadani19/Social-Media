@@ -9,7 +9,7 @@ const Posts = () => {
   const classes = useStyles();
   const { posts, loading } = useSelector((state) => state.posts);
   
-  if (!posts.length) {
+  if (!posts.length && !loading) {
     return <Typography className={classes.actionDiv} variant="h5" color="primary">
       No Post Available
     </Typography>
